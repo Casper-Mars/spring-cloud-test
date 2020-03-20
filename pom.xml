@@ -28,6 +28,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <docker-rep>114.55.253.170:5000</docker-rep>
     </properties>
 
     <!--Spring Cloud 版本序列配置-->

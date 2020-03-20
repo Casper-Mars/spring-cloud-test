@@ -25,5 +25,35 @@
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>eureka</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.2</version>
 
+                <configuration>
+                    <imageName>${docker-rep}/${project.artifactId}</imageName>
+                    <baseImage>114.55.253.170:5000/jdk1.8</baseImage>
+                    <entryPoint>
+                        ["java", "-jar", "/${project.build.finalName}.jar"]
+                    </entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <serverId>docker-repo</serverId>
+                    <dockerHost>http://114.55.253.170:2375</dockerHost>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
